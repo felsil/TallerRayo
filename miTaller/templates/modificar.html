@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/formuario.css' %}">
+<script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+<script src="{% static 'lib/jquery.js' %}"></script>
+<script src="{% static 'dist_jqv/jquery.validate.min.js' %}"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% endblock css %}
+
+
+
+
+
+<!-- cabecera -->
+
+{% block contenido %}
+<section id="bienvenida">
+    <h2>ADMINISTRACION RAYO MACQUEEN: <br>Usuario <b>{{user.username}} {{user.last_name}} </b></h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto fugiat repellat recusandae a animi
+        aut magnam quibusdam reprehenderit aperiam nihil minus id voluptates vitae, error delectus dolores!
+        Error, minus mollitia.</p>
+</section>
+
+
+<section id="formulario">
+
+    <form class="form-registro" id="formu" action="{% url 'FORMU' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="form-titulo">Modificar Reparaciones</h2>
+        <div class="contenedor-imp">
+            <label for="names">Nombre de reparacion</label>
+            <input class="col-100" type="text" name="txtNombre" id="txtNombre"
+                value="{{reparaciones.nombreReparacion}}">
+
+            <label for="names" style="margin-top: 15px;">Codigo</label>
+            <input class="col-100" type="number" name="txtCodigo" id="txtCodigo"
+                value={{reparaciones.codigoReparacion}}>
+
+            <label for="names" style="margin-top: 15px;">Descripcion de reparacion</label>
+            <textarea class="col-100" style="margin-top: 15px; margin-bottom: 15px;" name="txtDescripcion"
+                id="txtDescripcion">{{reparaciones.descripcionReparacion}}</textarea>
+            Imagen actual: <a href="{{reparaciones.imagen.url}}">{{reparaciones.imagen.url}}</a>
+            <label for="names" style="margin-top: 15px;">Imagen de reparacion</label>
+            <input class="col-100" type="file" name="txtImagen" id="txtImagen">
+
+            <label for="names" style="margin-top: 15px;">Categorias</label>
+            <select class="col-100" style="margin-top: 15px; padding: 15px;" name="cboCategoria" id="cboCategoria">
+                {% for item in categorias %}
+                    {% if item.nombreCategoria != reparaciones.categoriaRep.nombreCategoria %}
+                        <option value="{{item.nombreCategoria}}">{{item.nombreCategoria}}</option>
+                    {% else %}
+                        <option value="{{item.nombreCategoria}}" selected>{{item.nombreCategoria}}</option>
+                    {% endif %}                   
+
+                {% endfor %}
+            </select>
+            <input class="btn-enviar" type="submit" value="Modificar">
+            <input class="btn-enviar" type="button" value="Volver">
+        </div>
+    </form>
+    <div style="text-align: center; color: red; font-size: xx-large;">
+        {{mensaje}}
+    </div>
+</section>
+
+{% endblock contenido %}
+
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+{% endblock js %}

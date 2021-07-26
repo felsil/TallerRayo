@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/formuario.css' %}">
+<script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+<script src="{% static 'lib/jquery.js' %}"></script>
+<script src="{% static 'dist_jqv/jquery.validate.min.js' %}"></script>
+{% endblock css %}
+
+
+
+
+
+<!-- cabecera -->
+
+{% block contenido %}
+<section id="bienvenida">
+    <h2>Autenticacion de usuarios</h2>
+</section>
+
+
+<section id="formulario">
+
+    <form class="form-registro" action="{% url 'LOGIN' %}" method="POST">
+        {% csrf_token %}
+        <h2 class="form-titulo">Acceso Funcionarios</h2>
+        <div class="contenedor-imp">
+
+
+            <label for="names">Nombre de Usuario:</label>
+            <input class="col-100" type="text" name="txtUser" id="txtUser" placeholder="Ingrese usuario">
+
+            <label for="names" style="margin-top: 15px;">Password:</label>
+            <input class="col-100" type="password" name="txtPass" id="txtPass" placeholder="Ingrese clave">
+
+            <input class="btn-enviar" type="submit" value="Enviar">
+            <input class="btn-enviar" type="reset" value="Limpiar">
+
+        </div>
+    </form>
+
+</section>
+
+{% endblock contenido %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block contenido %}
+        <section id="bienvenida">
+            <h2>Ficha reparaciones</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto fugiat repellat recusandae a animi
+                aut magnam quibusdam reprehenderit aperiam nihil minus id voluptates vitae, error delectus dolores!
+                Error, minus mollitia.</p>
+                
+        </section>
+
+        <section id="blog">
+            <h3>Informacion de muestras reparaciones</h3>
+            <div class="contenedor">
+                <article>
+                    <img src="{{reparaciones.imagen.url}}" alt="">
+                    <h4>Reparacion:{{reparaciones.nombreReparacion}} </h4>
+                    <h4>Descripcion:{{reparaciones.descripcionReparacion}} </h4>
+                    <h4>Categoria:{{reparaciones.categoriaRep.nombreCategoria}}</h4>
+                </article>
+                
+            </div>
+        </section>
+
+       
+{% endblock contenido %} 
+
+ 

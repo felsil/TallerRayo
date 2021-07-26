@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'css/formuario.css' %}">
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'lib/jquery.js' %}"></script>
+    <script src="{% static 'dist_jqv/jquery.validate.min.js' %}"></script>
+    {% endblock css %}
+    
+
+    
+
+    
+    <!-- cabecera -->
+   
+{% block contenido %}
+    <section id="bienvenida">
+            <h2><b>ADMINISTRACION</b></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto fugiat repellat recusandae a animi
+                aut magnam quibusdam reprehenderit aperiam nihil minus id voluptates vitae, error delectus dolores!
+                Error, minus mollitia.</p>
+        </section>
+       
+        
+        <section id="formulario">
+
+            <form class="form-registro" id="formu" action="{% url 'FORMU' %}" method="POST" enctype="multipart/form-data" >
+                {% csrf_token %}
+                <h2 class="form-titulo">Agregar Reparaciones</h2>
+                <div class="contenedor-imp">
+                    <label for="names">Nombre de reparacion</label>
+                    <input class="col-100" type="text" name="txtNombre" id="txtNombre" placeholder="ingrese reparacion">
+                    
+                    <label for="names" style="margin-top: 15px;">Codigo</label>
+                    <input class="col-100" type="number" name="txtCodigo" id="txtCodigo">
+                    
+                    <label for="names" style="margin-top: 15px;">Descripcion de reparacion</label>
+                    <textarea class="col-100" style="margin-top: 15px;" name="txtDescripcion" id="txtDescripcion"></textarea>
+                    
+                    <label for="names" style="margin-top: 15px;">Imagen de reparacion</label>
+                    <input class="col-100" type="file" name="txtImagen" id="txtImagen">
+
+                    <label for="names" style="margin-top: 15px;">Categorias</label>
+                    <select class="col-100" style="margin-top: 15px;" name="cboCategoria" id="cboCategoria">
+                       {% for item in categorias %}
+                            <option value="{{item.nombreCategoria}}">{{item.nombreCategoria}}</option>
+                        {% endfor %}
+                    </select> 
+                       
+
+                    <input class="btn-enviar" type="submit" value="Enviar">
+                    <input class="btn-enviar" type="reset" value="Limpiar">
+                    <p><b>{{mensaje}}</b></p>
+                </div>
+            </form>
+
+        </section>
+        <section>
+            <div id="listado">
+
+            </div>
+        </section>
+{% endblock contenido %}
+        
+
+{% block js %}
+    <script src="js/registro.js"></script>
+    <script src="js/proceso.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            //efectuar proceso de validacion
+            
+
+        });
+    </script>
+{% endblock js %}
+    
